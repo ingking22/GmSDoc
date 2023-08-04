@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gmission.doc.mapper.MenuMapper">
+
+    <select id="selectLeftMenuRoleAuth" parameterType="com.gmission.doc.vo.LeftMenuVO" resultType="com.gmission.doc.vo.LeftMenuVO">
+         SELECT * FROM TB_PROGRAM AS A
+         JOIN TB_AUTHPGM AS B ON A.PROGRAMCD = B.PROGRAMCD
+         WHERE AUTHORITYCD = #{authoritycd}
+         AND USEFG = 'Y'
+         ORDER BY A.PROGRAMORD
+    </select>
+
+
+
+
+</mapper>

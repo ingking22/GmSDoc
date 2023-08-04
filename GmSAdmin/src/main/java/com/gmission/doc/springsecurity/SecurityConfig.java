@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(b ->
                                 b.requestMatchers("/superAdminDTC", "/adminDTC").hasRole("SYSADMIN")
                                 .requestMatchers("/adminDTC").hasRole("ADMIN")
-                                .requestMatchers("/dtc/**").hasRole("USER")
+                                .requestMatchers("/DTC/**").hasRole("USER")
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                                 .anyRequest().permitAll()
                 )

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <!-- 해당 설정파일에서 사용하는 프로퍼티-->
+    <Properties>
+        <property name="LOGS_PATH">DTCLogs/</property>
+    </Properties>
+
+    <Appenders>
+        <!-- 콘솔 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %5p [%t] (%F:%L)- %m%n" />
+        </Console>
+
+        <!-- 파일 -->
+        <RollingFile name ="RollingFile">
+            <FileName>${LOGS_PATH}/log4j2.log</FileName>
+            <FilePattern>${LOGS_PATH}/log4j2.%d{yyyy-MM-dd}.log</FilePattern>
+
+            <PatternLayout>
+                <Pattern>%d %-5p [%t] %-17c{2} (%13F:%L) %3x - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval = "1" modulate = "true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+
+
+
+       <Logger name="java.sql" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+          <!-- log SQL with timing information, post execution -->
+        <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+        <!--  2020.06.25 김영대 추가  -->
+        <logger name="jdbc.sqlonly" level="INFO"  additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </logger>
+        <logger name="jdbc.connection" level="INFO"  additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </logger>
+        <logger name="jdbc.audit" level="INFO"  additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </logger>
+        <logger name="jdbc.resultset" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </logger>
+        <logger name="jdbc.resultsettable" level="ERROR" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </logger>
+
+
+
+
+        <!-- FATAL, ERROR, WARN, INFO, DEBUG, TRACE -->
+        <Root level="INFO">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+
+
+
+
+
+    </Loggers>
+</Configuration>
