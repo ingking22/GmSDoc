@@ -40,18 +40,20 @@
                 <ul class="sidebar-nav">
 
                         <c:forEach var="leftmenu" items="${leftMenu}">
-                            <c:if test='${leftmenu.parprogramcd eq ""}'>
-                                <li class="sidebar-header">
-                                        ${leftmenu.programcd}
+                            <c:choose>
+                                <c:when test='${leftmenu.parprogramcd eq null}'>
+                                    <li class="sidebar-header">
+                                            ${leftmenu.programnm}
+                                    </li>
+                                </c:when>
+                            <c:otherwise>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="${leftmenu.filenm} }">
+                                            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">${leftmenu.programnm}</span>
+                                    </a>
                                 </li>
-                            </c:if>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="${leftmenu.filenm} }">
-                                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">${leftmenu.programnm}</span>
-                                </a>
-                            </li>
-
+                            </c:otherwise>
+                            </c:choose>
 
                        </c:forEach>
 
