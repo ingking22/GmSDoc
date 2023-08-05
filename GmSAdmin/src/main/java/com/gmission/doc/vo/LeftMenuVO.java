@@ -23,6 +23,7 @@ public class LeftMenuVO {
     private String usefg;
 
     private String authoritycd;
+    private String programIcon;
 
 
 
