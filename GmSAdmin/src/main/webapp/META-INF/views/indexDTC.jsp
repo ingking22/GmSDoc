@@ -22,7 +22,7 @@
 
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-    <title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+    <title>문서반출 시스템 테스트</title>
 
     <link href="/css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -48,7 +48,7 @@
                                 </c:when>
                             <c:otherwise>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link" href="${leftmenu.filenm} }">
+                                    <a class="sidebar-link" href="${leftmenu.filenm}">
                                             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">${leftmenu.programnm}</span>
                                     </a>
                                 </li>

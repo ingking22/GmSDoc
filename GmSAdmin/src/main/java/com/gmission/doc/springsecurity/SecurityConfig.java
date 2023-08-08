@@ -56,7 +56,7 @@ public class SecurityConfig {
                 )
                 .formLogin(c -> c.loginPage("/login/loginDTC")
                                 .loginProcessingUrl("/loginSecurity")
-                                .defaultSuccessUrl("/dtc/indexDTC")
+                                .defaultSuccessUrl("/DTC/indexDTC")
                                 .usernameParameter("loginid")
                                 .passwordParameter("password")
                                 .failureUrl("/login/loginDTC?error=AccessFail")

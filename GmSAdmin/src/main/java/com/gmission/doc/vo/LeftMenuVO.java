@@ -24,6 +24,6 @@ public class LeftMenuVO {
 
     private String authoritycd;
 
-
+    private String activeyn;
 
 }
