@@ -8,6 +8,8 @@
     <select id="selectLeftMenuRoleAuth" parameterType="com.gmission.doc.vo.LeftMenuVO" resultType="com.gmission.doc.vo.LeftMenuVO">
          SELECT A.*,B.AUTHORITYCD FROM TB_PROGRAM AS A
          JOIN TB_AUTHPGM AS B ON A.PROGRAMCD = B.PROGRAMCD
+         SELECT * FROM tibero.TB_PROGRAM AS A
+         JOIN tibero.TB_AUTHPGM AS B ON A.PROGRAMCD = B.PROGRAMCD
          WHERE AUTHORITYCD = #{authoritycd}
          AND USEFG = 'Y'
          ORDER BY A.PROGRAMORD
