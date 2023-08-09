@@ -88,6 +88,13 @@ $(document).ready(function() {
 function submitLogin() {
 	document.getElementById("loginForm").submit();
 }
+$("#loginForm").keypress(function(e){
+	if(e.keyCode==13){
+		submitLogin();
+	}
+})
+
+
 
 </script>
 

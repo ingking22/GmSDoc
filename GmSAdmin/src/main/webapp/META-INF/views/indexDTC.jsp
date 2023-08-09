@@ -48,8 +48,8 @@
                                 </c:when>
                             <c:otherwise>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link" href="${leftmenu.filenm} }">
-                                            <i class="align-middle" data-feather="${leftmenu.programIcon}"></i> <span class="align-middle">${leftmenu.programnm}</span>
+                                    <a class="sidebar-link"href="${leftmenu.filenm}"onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">
+                                            <i class="align-middle" data-feather="${leftmenu.programIcon}"></i> <span class="align-middle"id="leftmenu" onclick="popup();">${leftmenu.programnm}</span>
 
                                     </a>
                                 </li>
@@ -751,5 +751,7 @@
     </script>
 
 </body>
-
+<script src='/js/jquery/jquery-3.7.0.min.js'></script>
+<script type="text/javascript">
+</script>
 </html>
