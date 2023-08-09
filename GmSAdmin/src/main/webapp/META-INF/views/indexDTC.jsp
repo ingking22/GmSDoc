@@ -48,14 +48,9 @@
                                 </c:when>
                             <c:otherwise>
                                 <li class="sidebar-item">
-<<<<<<< HEAD
-                                    <a class="sidebar-link" href="${leftmenu.filenm}">
-                                            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">${leftmenu.programnm}</span>
-=======
                                     <a class="sidebar-link" href="${leftmenu.filenm} }">
                                             <i class="align-middle" data-feather="${leftmenu.programIcon}"></i> <span class="align-middle">${leftmenu.programnm}</span>
 
->>>>>>> branch 'main' of https://github.com/ingking22/GmSDoc.git
                                     </a>
                                 </li>
                             </c:otherwise>
