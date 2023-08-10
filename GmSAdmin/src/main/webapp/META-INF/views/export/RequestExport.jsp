@@ -30,35 +30,6 @@
 
 <body>
     <div class="wrapper">
-        <nav id="sidebar" class="sidebar js-sidebar">
-            <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="index.html">
-                        <span class="align-middle">문서반출시스템 테스트</span>
-                </a>
-                <ul class="sidebar-nav">
-
-                        <c:forEach var="leftmenu" items="${leftMenu}">
-                            <c:choose>
-                                <c:when test='${leftmenu.parprogramcd eq null}'>
-                                    <li class="sidebar-header">
-                                            ${leftmenu.programnm}
-                                    </li>
-                                </c:when>
-                            <c:otherwise>
-                                <li class="sidebar-item <c:if test="${leftmenu.activeyn eq 'Y'}">active</c:if>">
-                                    <a class="sidebar-link" href="${leftmenu.filenm}">
-                                            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">${leftmenu.programnm}</span>
-                                    </a>
-                                </li>
-                            </c:otherwise>
-                            </c:choose>
-
-                       </c:forEach>
-
-                </ul>
-
-            </div>
-        </nav>
 
         <div class="main">
             <nav class="navbar navbar-expand navbar-light navbar-bg">
@@ -223,54 +194,43 @@
             </nav>
 
             <main class="content">
+            <form id="" method="post" action="">
                 <div class="container-fluid p-0">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">반출유형</h5>
+								</div>
+								<div class="card-body">
+									<select class="form-select mb-3" name="">
+										<option value="usb">USB</option>
+										<option value="webMail">webmail</option>
+									</select>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">반출기관</h5>
+								</div>
+								<div class="card-body">
+									<select class="form-select mb-3" name="">
+										<option value="important">중요단말</option>
+										<option value="kftc">금융결제원</option>
+									</select>
+								</div>
+							</div>
 
-                    <h1 class="h3 mb-3"><strong>신청</strong> </h1>
-
-                    <div class="row">
-                        <div class="col-xl-6 col-xxl-5 d-flex">
-                            <div class="w-100">
-                                <div class="row">
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">반출사유</h5>
+								</div>
+								<div class="card-body">
+									<textarea class="form-control" rows="2" placeholder="Textarea"></textarea>
+								</div>
+							</div>
                 </div>
+                </form>
             </main>
 
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-muted">
-                        <div class="col-6 text-start">
-                            <p class="mb-0">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin Template</strong></a>                               &copy;
-                            </p>
-                        </div>
-                        <div class="col-6 text-end">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 
@@ -499,5 +459,6 @@
     </script>
 
 </body>
+<script src='/js/jquery/jquery-3.7.0.min.js'></script>
 
 </html>
