@@ -48,7 +48,7 @@
                                 </c:when>
                             <c:otherwise>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link"href="${leftmenu.filenm}"onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">
+                                    <a class="sidebar-link"href="${leftmenu.filenm}">
                                             <i class="align-middle" data-feather="${leftmenu.programIcon}"></i> <span class="align-middle"id="leftmenu" onclick="popup();">${leftmenu.programnm}</span>
 
                                     </a>
