@@ -195,23 +195,26 @@
 
             <main class="content">
             <form id="" method="post" action="">
-                <div class="container-fluid p-0">
-							<div class="card">
+                <div class="container-fluid p-0" style="width:50%;">
+
+
+							<div class="card" style="flex-direction: inherit;">
 								<div class="card-header">
 									<h5 class="card-title mb-0">반출유형</h5>
 								</div>
-								<div class="card-body">
+								<div class="card-body" style="width:20%;flex: inherit;">
 									<select class="form-select mb-3" name="">
 										<option value="usb">USB</option>
 										<option value="webMail">webmail</option>
 									</select>
 								</div>
 							</div>
-							<div class="card">
+
+							<div class="card"style="flex-direction: inherit;">
 								<div class="card-header">
 									<h5 class="card-title mb-0">반출기관</h5>
 								</div>
-								<div class="card-body">
+								<div class="card-body"style="width:20%;flex: inherit;">
 									<select class="form-select mb-3" name="">
 										<option value="important">중요단말</option>
 										<option value="kftc">금융결제원</option>
@@ -219,15 +222,49 @@
 								</div>
 							</div>
 
-							<div class="card">
+							<div class="card"style="flex-direction: inherit;">
 								<div class="card-header">
 									<h5 class="card-title mb-0">반출사유</h5>
 								</div>
 								<div class="card-body">
-									<textarea class="form-control" rows="2" placeholder="Textarea"></textarea>
+									<textarea class="form-control" rows="2" placeholder="반출사유 5자이상"></textarea>
 								</div>
 							</div>
-                </div>
+							<div class="card"style="flex-direction: inherit;">
+								<div class="card-header">
+									<h5 class="card-title mb-0">받는사람</h5>
+								</div>
+								<div class="card-body" style="width:40%;flex: inherit;">
+									<input type="text" class="form-control" placeholder="Email">
+
+								</div>
+							</div>
+
+							<!--
+							<div class="card"style="flex-direction: inherit;">
+								<div class="card-header">
+									<h5 class="card-title mb-0">파일첨부</h5>
+								</div>
+								<div class="card-body" style="width:40%;flex: inherit;">
+									<td>
+									<input type="file" class="form-control" placeholder="Email">
+									</td>
+									<td>
+									<input type="submit" value="반출신청">
+									</td>
+								</div>
+							</div>
+ 							-->
+							<div class="card" style="flex-direction: inherit;">
+									 <div id="" >
+       								 <jsp:include page="" flush="false"></jsp:include>
+   									 </div>
+							</div>
+
+
+
+
+               		 </div>
                 </form>
             </main>
 
