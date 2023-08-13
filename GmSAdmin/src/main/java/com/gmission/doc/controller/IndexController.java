@@ -49,4 +49,12 @@ public class IndexController {
     }
 
 
+    @GetMapping("/RequestExportFile")
+    public String requestExportFile(Model model) {
+        model.addAttribute("leftMenu", GetAuthLeftMenu("MN0101"));
+
+        return "/export/RequestExportFile";
+    }
+
+
 }
