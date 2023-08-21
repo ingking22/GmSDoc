@@ -33,9 +33,12 @@ public class FileController {
         File file = new File("D:/Install/eGovFrameDev-4.1.0-Win-64bit.exe");
         FileSystemResource resource = new FileSystemResource(file);
 
+
         httpHeaders.set(HttpHeaders.LAST_MODIFIED, String.valueOf(file.lastModified()));
         httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment ; filename=\"%s\"", file.getName()));
         httpHeaders.set(HttpHeaders.CONTENT_LENGTH, String.valueOf(file.length()));
+
+
 
         return ResponseEntity.ok()
                 .headers(httpHeaders)

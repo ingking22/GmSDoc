@@ -206,6 +206,7 @@
         <div class="mb-3">
             <button type="button" class="btn btn-primary" style="margin-right:1%" id="htmlAttach">찾아보기</button>
             <button type="button" class="btn btn-primary" style="margin-right:1%" id="agentAttach">Agent이용</button>
+            <button type="button" class="btn btn-primary" style="margin-right:1%" id="downloadTest">파일다운로드테스트</button>
             <button type="button" class="btn btn-primary" >파일 삭제</button>
         </div>
    </div>
@@ -295,6 +296,30 @@ function initEvent() {
 
     //Agent 이용 버튼 클릭 시에
     $("#agentAttach").on("click",function() {
+
+    });
+
+    // 다운로드 테스트 진행
+    $("#downloadTest").on("click", function() {
+
+        $.ajax({
+            type:"post",
+            url : "http://localhost:39394/command=downloadFile",
+            contentType: "application/json; charset=utf-8",
+            data : {
+                downloadURL:"/File/FileDownLoadTest"
+            },
+            success : function(data) {
+                console.log(data);
+            } ,
+            error : function(xhr) {
+                console.log(xhr);
+            } ,
+            complete : function(data,textStatus) {
+                console.log(data);
+                console.log(textStatus);
+            }
+        });
 
     });
 
