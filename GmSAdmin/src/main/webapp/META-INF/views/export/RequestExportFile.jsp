@@ -304,6 +304,7 @@ function initEvent() {
             type:"post",
             url : "http://localhost:39394/command=uploadFile",
             contentType: "application/json; charset=utf-8",
+            dataType : "json",
             data : {
                 uploadURL: encodeURI("/File/FileUploadTest"),
                 generateID : genID
@@ -312,9 +313,8 @@ function initEvent() {
                 console.log(data);
 
                 try {
-                    let jsonObj = JSON.Parse(data);
-
-                    if(jsonObj.result == "SUCCESS") {
+                    alert(data.result);
+                    if(data.result == "SUCCESS") {
                         selectUploadTempFile();
                     }
 
@@ -420,9 +420,33 @@ function initEvent() {
 }
 
 function selectUploadTempFile() {
-	
-	//1. Ajax 호출 진행 [ 임시 파일 등록 목록 ]
-	
+
+    //1. Ajax 호출 진행 [ 임시 파일 등록 목록 ]
+    $.ajax({
+        type:"post",
+        url : "/DTC/RequestUploadFileTempList",
+        contentType: "application/json; charset=utf-8",
+        dataType : "json",
+        data : JSON.stringify({"tempfileid" : "${tempGenID}"}),
+        success : function(data) {
+
+            for(let i = 0 ; i < data.length ; i++) {
+                $("<tr>"
+                        + "<td><input type=\"checkbox\" id=\"chk" + fileIdx + "\">" + "</td>"
+                        + "<td id=\"tdFileUpload" + fileIdx.toString() + "\">" + data[i].filename + "</td>"
+                        + "<td id=\"tdFileProgress" + fileIdx.toString() + "\">" + data[i].filesize + "</td>"
+                   ).appendTo("#tableFileList").find("tbody");
+            }
+        } ,
+        error : function(xhr) {
+            console.log(xhr);
+        } ,
+        complete : function(data,textStatus) {
+            console.log(data);
+            console.log(textStatus);
+        }
+    });
+
 }
 
 
