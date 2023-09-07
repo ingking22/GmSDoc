@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gmission.doc.mapper.RequestExportMapper">
+
+
+    <insert id="insertRequestUploadFileTemp" parameterType="com.gmission.doc.vo.RequestUploadFileTempVO" >
+        /* insertRequestUploadFileTemp */
+        INSERT INTO tibero.TB_REQUESTUPLOADFILETEMP
+        (TEMPFILEID
+        ,SEQ
+        <if test='reqexpseq != null and reqexpseq != ""'>
+        ,REQEXPSEQ
+        </if>
+        ,FILEPATH
+        ,FILENAME
+        ,FILESIZE
+        )
+        VALUES
+        (
+        #{tempfileid}
+        ,(SELECT NVL ((SELECT MAX(SEQ) FROM tibero.TB_REQUESTUPLOADFILETEMP),0) + 1 FROM DUAL)
+        <if test='reqexpseq != null and reqexpseq != ""'>
+        ,#{reqexpseq}
+        </if>
+        ,#{filepath}
+        ,#{filename}
+        ,#{filesize}
+        )
+
+    </insert>
+
+
+    <select id="selectRequestUploadFileTemp" parameterType="com.gmission.doc.vo.RequestUploadFileTempVO" resultType="com.gmission.doc.vo.RequestUploadFileTempVO">
+
+        SELECT
+        *
+        FROM tibero.TB_REQUESTUPLOADFILETEMP
+        WHERE 1 = 1
+        <if test='tempfileid != null and tempfileid != ""'>
+            AND TEMPFILEID = #{tempfileid}
+        </if>
+
+    </select>
+
+</mapper>

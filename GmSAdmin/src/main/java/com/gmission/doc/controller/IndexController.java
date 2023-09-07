@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gmission.doc.common.IDGenerator;
 import com.gmission.doc.service.MenuService;
 import com.gmission.doc.springsecurity.UserLoginVO;
 import com.gmission.doc.vo.LeftMenuVO;
@@ -52,6 +53,8 @@ public class IndexController {
     @GetMapping("/RequestExportFile")
     public String requestExportFile(Model model) {
         model.addAttribute("leftMenu", GetAuthLeftMenu("MN0101"));
+        // 임시로 업로드 한 파일 ID로 사용하기 위하여 페이지 로드시에 생성하여 전달 진행
+        model.addAttribute("tempGenID", IDGenerator.generate());
 
         return "/export/RequestExportFile";
     }

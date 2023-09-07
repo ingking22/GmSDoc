@@ -205,7 +205,7 @@
    <div class="card-body" style="width:80%;flex: inherit;">
         <div class="mb-3">
             <button type="button" class="btn btn-primary" style="margin-right:1%" id="htmlAttach">찾아보기</button>
-            <button type="button" class="btn btn-primary" style="margin-right:1%" id="agentAttach">Agent이용</button>
+            <button type="button" class="btn btn-primary" style="margin-right:1%" id="agentAttach">Agent를 이용한 파일 업로드</button>
             <button type="button" class="btn btn-primary" style="margin-right:1%" id="downloadTest">파일다운로드테스트</button>
             <button type="button" class="btn btn-primary" >파일 삭제</button>
         </div>
@@ -262,11 +262,11 @@ function initEvent() {
     //찾아보기 버튼 클릭 시에
     $("#htmlAttach").on("click",function() {
 
-        $("<input type=\"file\" id=\"fileUpload" + fileIdx + "\" name=\"fileUpload" + fileIdx + "\" "
+        $("<input type=\"file\" id=\"fileUpload" + fileIdx + "\" name=\"files\""
                 + "style=\"opacity:0;filter:alpha(opacity=0)\" />").appendTo("#divFileList");
 
         $("#fileUpload" + fileIdx.toString()).fileupload({
-            url : "/File/UploadExportFile",
+            url : "/File/FileUploadTest",
             add : function(e,data) {
                $("<tr>"
                     + "<td><input type=\"checkbox\" id=\"chk" + fileIdx + "\">" + "</td>"
@@ -275,6 +275,7 @@ function initEvent() {
                ).appendTo("#tableFileList").find("tbody");
 
                fileIdx++;
+               alert("submit");
                data.submit();
 
             } ,
@@ -282,11 +283,11 @@ function initEvent() {
                 let progress = parseInt((data.loaded / data.total) * 100 ,10);
                 console.log(progress);
                 $("#tdFileProgress" + fileIdx.toString()).text(progress.toString() + "%");
-            },
-
-            data:function(e,data) {
-                console.log("Upload Finished");
             }
+
+//             data:function(e,data) {
+//                 console.log("Upload Finished");
+//             }
         });
 
 
@@ -296,10 +297,45 @@ function initEvent() {
 
     //Agent 이용 버튼 클릭 시에
     $("#agentAttach").on("click",function() {
+        // 1. 서버에서 Generate 된 ID를 가져온다.
+        let genID = "${tempGenID}";
+
+        $.ajax({
+            type:"post",
+            url : "http://localhost:39394/command=uploadFile",
+            contentType: "application/json; charset=utf-8",
+            data : {
+                uploadURL: encodeURI("/File/FileUploadTest"),
+                generateID : genID
+            },
+            success : function(data) {
+                console.log(data);
+
+                try {
+                    let jsonObj = JSON.Parse(data);
+
+                    if(jsonObj.result == "SUCCESS") {
+                        selectUploadTempFile();
+                    }
+
+                } catch(exception) {
+
+                }
+
+            } ,
+            error : function(xhr) {
+                console.log(xhr);
+            } ,
+            complete : function(data,textStatus) {
+                console.log(data);
+                console.log(textStatus);
+            }
+        });
 
     });
 
     // 다운로드 테스트 진행
+
     $("#downloadTest").on("click", function() {
 
         $.ajax({
@@ -307,7 +343,7 @@ function initEvent() {
             url : "http://localhost:39394/command=downloadFile",
             contentType: "application/json; charset=utf-8",
             data : {
-                downloadURL:"/File/FileDownLoadTest"
+                downloadURL: encodeURI("/File/FileDownLoadTest")
             },
             success : function(data) {
                 console.log(data);
@@ -323,8 +359,72 @@ function initEvent() {
 
     });
 
+    /*
+    $("#downloadTest").on("click", function() {
+        console.log("start");
+        let startTime = new Date().getTime();
 
+
+        $.ajax({
+            url : "/File/FileDownLoadTest",
+            type : "GET",
+            cache : false,
+            xhrFields : {
+                responseType : "blob"
+            }
+        }).done(function(blob , status , xhr) {
+               //check for filename
+               let fileName = "";
+               let disposition = xhr.getResponseHeader("Content-Disposition");
+
+               if(disposition && disposition.indexOf("attachment") !== -1) {
+                   let filenameRegex = /filename[^;=\n]*=((['"]).*?\2[^;\n]*)/;
+                   let matches = filenameRegex.exec(disposition);
+
+                   if(matches != null && matches[1]) {
+                       fileName = decodeURI(matches[1].replace(/['"]/g,""));
+                   }
+               }
+
+               //for IE
+               if(window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob , fileName);
+               } else {
+                   let URL = window.URL || window.webkitURL;
+                   let downloadUrl = URL.createObjectURL(blob);
+
+                   if(fileName) {
+                       let a = document.createElement("a");
+
+                       //for safari
+                       if(a.download === undefined)
+                           window.location.href = downloadUrl;
+                       else {
+                           a.href = downloadUrl;
+                           a.download = fileName;
+                           document.body.appendChild(a);
+                           a.click();
+                       }
+                   } else
+                       window.location.href = downloadUrl;
+               }
+
+
+               let endTime = new Date().getTime();
+               console.log(endTime - startTime);
+               console.log("end");
+        });
+
+    });
+    */
 }
+
+function selectUploadTempFile() {
+	
+	//1. Ajax 호출 진행 [ 임시 파일 등록 목록 ]
+	
+}
+
 
 </script>
 

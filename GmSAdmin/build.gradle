@@ -60,7 +60,11 @@ dependencies {
     implementation group: 'org.bgee.log4jdbc-log4j2', name:'log4jdbc-log4j2-jdbc4.1', version: '1.16'
 
 
+    implementation 'commons-fileupload:commons-fileupload:1.5'
+    implementation 'commons-io:commons-io:2.13.0'
     implementation fileTree(dir:"lib" , include:"*.jar")
+
+
 }
 
 tasks.named('test') {

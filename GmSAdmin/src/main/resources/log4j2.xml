@@ -30,7 +30,7 @@
 
 
 
-       <Logger name="java.sql" level="INFO" additivity="false">
+       <Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
             <AppenderRef ref="RollingFile" />
         </Logger>
@@ -44,7 +44,7 @@
             <AppenderRef ref="RollingFile" />
         </Logger>
         <!--  2020.06.25 김영대 추가  -->
-        <logger name="jdbc.sqlonly" level="INFO"  additivity="false">
+        <logger name="jdbc.sqlonly" level="DEBUG"  additivity="false">
             <AppenderRef ref="console" />
             <AppenderRef ref="RollingFile" />
         </logger>
@@ -56,11 +56,11 @@
             <AppenderRef ref="console" />
             <AppenderRef ref="RollingFile" />
         </logger>
-        <logger name="jdbc.resultset" level="ERROR" additivity="false">
+        <logger name="jdbc.resultset" level="INFO" additivity="false">
             <AppenderRef ref="console" />
             <AppenderRef ref="RollingFile" />
         </logger>
-        <logger name="jdbc.resultsettable" level="ERROR" additivity="false">
+        <logger name="jdbc.resultsettable" level="INFO" additivity="false">
             <AppenderRef ref="console" />
             <AppenderRef ref="RollingFile" />
         </logger>

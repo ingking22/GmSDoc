@@ -6,7 +6,7 @@
 <mapper namespace="com.gmission.doc.springsecurity.service.SecurityLoginMapper">
 
 	<select id="selectLoginCheck" parameterType="String" resultType="com.gmission.doc.springsecurity.UserLoginVO">
-		SELECT * FROM TB_USER WHERE USERID = #{loginid}
+		SELECT * FROM tibero.TB_USER WHERE USERID = #{loginid}
 	</select>
 
 

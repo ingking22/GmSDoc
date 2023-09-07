@@ -7,5 +7,6 @@
   <mappers>
     <mapper resource="LoginSecurityMap.xml"/>
     <mapper resource="MenuMap.xml"/>
+    <mapper resource="RequestExportMap.xml"/>
   </mappers>
 </configuration>

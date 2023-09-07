@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gmission.doc.mapper.FavoriteMapper">
+
+
+    <select id="selectFavoritOptionByUserID" parameterType="com.gmission.doc.vo.FavoriteVO"
+        resultType="com.gmission.doc.vo.FavoriteVO">
+
+        SELECT
+            USERID,
+            OPTIONSEQ,
+            OPTIONNAME,
+            EXPTYPEID,
+            EXPREASONID,
+            EXPDETAILREASON,
+            EXPINSTNAME,
+            (SELECT ADDRESS FROM TB_FAVORITOPTIONINFO_ADDRESS WHERE OPTIONSEQ = #{optionseq} AND ADDRESSTYPE = 1) MAILTO,
+            (SELECT ADDRESS FROM TB_FAVORITOPTIONINFO_ADDRESS WHERE OPTIONSEQ = #{optionseq} AND ADDRESSTYPE = 2) MAILCC,
+            (SELECT ADDRESS FROM TB_FAVORITOPTIONINFO_ADDRESS WHERE OPTIONSEQ = #{optionseq} AND ADDRESSTYPE = 2) MAILBCC,
+            CREATEDT
+        FROM TB_FAVORITOPTIONINFO
+        WHERE
+           USERID = #{userid}
+           <if test='optionseq != null and optionseq != ""'>
+               AND OPTIONSEQ = #{optionseq}
+           </if>
+           <if test='exptypeid != null and exptypeid != ""'>
+               AND EXPTYPEID = #{exptypeid}
+           </if>
+        ORDER BY ORDERNUM , OPTIONNAME ASC
+
+    </select>
+
+
+
+
+</mapper>

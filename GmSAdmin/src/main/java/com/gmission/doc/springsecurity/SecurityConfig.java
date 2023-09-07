@@ -51,6 +51,7 @@ public class SecurityConfig {
                                 b.requestMatchers("/superAdminDTC", "/adminDTC").hasRole("SYSADMIN")
                                 .requestMatchers("/adminDTC").hasRole("ADMIN")
                                 .requestMatchers("/DTC/**").hasRole("USER")
+                                .requestMatchers("/File").permitAll()
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                                 .anyRequest().permitAll()
                 )
