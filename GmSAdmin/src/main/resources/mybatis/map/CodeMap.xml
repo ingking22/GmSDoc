@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gmission.doc.mapper.CodeMapper">
+
+ <select id="selectCodeMap" parameterType="com.gmission.doc.vo.CodeVO" resultType="com.gmission.doc.vo.CodeVO">
+    SELECT * FROM tibero.TB_CODE
+    WHERE
+    CODESETCD = #{codesetcd}
+    <if test='codenm != null and codenm != ""'>
+        AND CODENM LIKE CONCAT('%' , #{codenm} , '%')
+    </if>
+    <if test='usefg != null and  usefg != ""'>
+        AND USEFG = #{usefg}
+    </if>
+ </select>
+
+
+
+
+</mapper>

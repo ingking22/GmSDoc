@@ -20,7 +20,7 @@ public class RequestExportController {
     public RequestExportService requestExportService;
 
     @PostMapping("/RequestUploadFileTempList")
-    public List<RequestUploadFileTempVO> selectRequestUploadFileTempList(@RequestBody(required=false) RequestUploadFileTempVO requestUploadFileTempVO) throws Exception {
+    public List<RequestUploadFileTempVO> selectRequestUploadFileTempList(@RequestBody RequestUploadFileTempVO requestUploadFileTempVO) throws Exception {
 
         if(requestUploadFileTempVO == null)
             return new ArrayList<RequestUploadFileTempVO>();

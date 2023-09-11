@@ -10,6 +10,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -60,8 +61,8 @@ public class FileController {
 
             ResponseEntity<Resource> result = null;
             HttpHeaders httpHeaders = new HttpHeaders();
-            File file = new File("F:/FAXSYSTEM_UTILITY/mu_visual_studio_2010_sp1_x86_dvd_651704.iso");
-            //FileSystemResource resource = new FileSystemResource(file);
+            File file = new File("F:/FAXSYSTEM_UTILITY/mariadb-10.2.14-linux-glibc_214-x86_64.tar.gz");
+            FileSystemResource resource = new FileSystemResource(file);
 
             httpHeaders.set(HttpHeaders.LAST_MODIFIED, String.valueOf(file.lastModified()));
             httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment ; filename=\"%s\"", file.getName()));
@@ -69,6 +70,14 @@ public class FileController {
 
 
             /*
+            return ResponseEntity.ok()
+                    .headers(httpHeaders)
+                    .contentLength(file.length())
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(resource);
+
+
+
             final InputStream inputStream = new FileInputStream(file);
 
             StreamingResponseBody responseBody = outputStream -> {
@@ -81,14 +90,14 @@ public class FileController {
 
                 inputStream.close();
             };
-            */
-
+             */
 
             return ResponseEntity.ok()
                            .headers(httpHeaders)
                            .contentLength(file.length())
                            .contentType(MediaType.APPLICATION_OCTET_STREAM)
                            .body(getFileContent(file));
+
 
         } finally {
 

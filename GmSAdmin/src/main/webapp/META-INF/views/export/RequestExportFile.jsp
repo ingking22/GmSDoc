@@ -275,7 +275,7 @@ function initEvent() {
                ).appendTo("#tableFileList").find("tbody");
 
                fileIdx++;
-               alert("submit");
+               //alert("submit");
                data.submit();
 
             } ,
@@ -313,7 +313,7 @@ function initEvent() {
                 console.log(data);
 
                 try {
-                    alert(data.result);
+                    //alert(data.result);
                     if(data.result == "SUCCESS") {
                         selectUploadTempFile();
                     }
@@ -430,7 +430,11 @@ function selectUploadTempFile() {
         data : JSON.stringify({"tempfileid" : "${tempGenID}"}),
         success : function(data) {
 
+            $("#tableFileList").find("tbody").empty();
+
             for(let i = 0 ; i < data.length ; i++) {
+
+
                 $("<tr>"
                         + "<td><input type=\"checkbox\" id=\"chk" + fileIdx + "\">" + "</td>"
                         + "<td id=\"tdFileUpload" + fileIdx.toString() + "\">" + data[i].filename + "</td>"

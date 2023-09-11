@@ -202,7 +202,7 @@
                                     <h5 class="card-title mb-0">수신처 정보</h5>
                                 </div>
                                 <div class="card-body" style="width:20%;flex: inherit;">
-                                    <select class="form-select mb-3" name="favoritReceiver">
+                                    <select class="form-select mb-3" name="favoritReceiver" id="favoritReceiver">
                                     </select>
                                 </div>
                             </div>
@@ -507,15 +507,34 @@
 
 </body>
 <script src='/js/jquery/jquery-3.7.0.min.js'></script>
-
+<!--  2023.09.11 김영대 추가 진행  -->
+<script src='/js/AjaxWrap.js?ver=0.1'></script>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
 
+    // 자주쓰는 수신처 리스트를 불러 오도록 한다.
+    ajaxReqAsync("/Favorite/selectFavoritOptionByUserID" , null ,favoriteListBind );
+    //
+    
+
 
 
 });
+
+function favoriteListBind(jsonObj) {
+
+    $("#favoritReceiver").empty();
+
+    $("#favoritReceiver").append("<option value=''>직접입력</option>");
+
+    for(let i = 0 ; i < jsonObj.length ; i++) {
+           $("#favoritReceiver").append("<option value='"+ jsonObj[i].optionseq +"'>" + jsonObj[i].optionname +"</option>");
+    }
+
+
+}
 
 </script>
 
